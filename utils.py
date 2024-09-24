@@ -1,4 +1,3 @@
-
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urldefrag, urlparse
@@ -8,6 +7,7 @@ failed = []
 def fetch_page(url):
     try:
         response = requests.get(url)
+        response.raise_for_status()  # Ensure we get a valid response
         return response.content
     except requests.RequestException:
         failed.append(url)
@@ -18,10 +18,12 @@ def parse_links(url, content):
     links = []
     for link in soup.find_all('a', href=True):
         href = link['href']
-        href = urljoin(url, href)
-        href, _ = urldefrag(href)
+        href = urljoin(url, href)  # Handle relative URLs
+        href, _ = urldefrag(href)  # Remove URL fragments
         parsed_href = urlparse(href)
-        if parsed_href.netloc != urlparse(url).netloc:
-            continue
-        links.append(href)
+        
+        # Only add internal links
+        if parsed_href.netloc == urlparse(url).netloc and href not in visited:
+            links.append(href)
+    
     return links

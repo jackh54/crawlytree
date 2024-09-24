@@ -1,3 +1,4 @@
+import os
 import concurrent.futures
 from urllib.parse import urlparse
 from colorama import init, Fore
@@ -28,8 +29,6 @@ def summarize_crawl(domain, visited, failed):
     print(summary)
     output_content.append(summary + "\n")
 
-import os
-
 def main():
     global output_content
     visited = set()
@@ -38,7 +37,7 @@ def main():
     print(Fore.GREEN + "Starting the web crawler...")
 
     if os.getenv("CI"):
-        url = "https://books.toscrape.com/" 
+        url = "http://books.toscrape.com/"  # Replace with any valid default URL for testing
     else:
         url = input(Fore.YELLOW + "Enter the website URL to crawl: ")
 

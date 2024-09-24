@@ -1,7 +1,3 @@
-
-import requests
-from bs4 import BeautifulSoup
-from urllib.parse import urlparse, urljoin, urldefrag
 from threading import Lock
 from colorama import Fore
 from utils import fetch_page, parse_links
@@ -18,6 +14,8 @@ def crawl_website(url, depth=0):
             return
         visited.add(url)
 
+    print(f"Crawling: {url} at depth {depth}")  # Debugging statement
+
     content = fetch_page(url)
     if content is None:
         output = " " * depth * 2 + "|- " + url + " (error)"
@@ -28,4 +26,5 @@ def crawl_website(url, depth=0):
     output_queue.append((depth, Fore.GREEN + output))
 
     links = parse_links(url, content)
+    print(f"Found {len(links)} links on {url}")  # Debugging statement
     return links, depth + 1
