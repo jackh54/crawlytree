@@ -1,4 +1,3 @@
-
 import concurrent.futures
 from urllib.parse import urlparse
 from colorama import init, Fore
