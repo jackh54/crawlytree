@@ -38,7 +38,7 @@ def main():
     print(Fore.GREEN + "Starting the web crawler...")
 
     if os.getenv("CI"):
-        url = "https://www.w3schools.com/" 
+        url = "https://books.toscrape.com/" 
     else:
         url = input(Fore.YELLOW + "Enter the website URL to crawl: ")
 
