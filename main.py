@@ -11,7 +11,7 @@ max_workers = 200
 output_content = []
 
 def print_output(output_queue):
-    output_queue.sort(key=lambda x: x[0])
+    output_queue.sort(key=lambda x: x[0])  # Sort by depth
     for _, output in output_queue:
         print(output)
         output_content.append(output + "\n")
@@ -20,7 +20,7 @@ def summarize_crawl(domain, visited, failed):
     success_count = len(visited)
     failed_count = len(failed)
 
-    summary = f"\n{Fore.CYAN}{domain} - {Fore.GREEN}{success_count} domains traced"
+    summary = f"\n{Fore.CYAN}{domain} - {Fore.GREEN}{success_count} pages traced"
     if failed_count > 0:
         summary += f" and {Fore.RED}{failed_count} failed"
     else:

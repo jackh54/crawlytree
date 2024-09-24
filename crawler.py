@@ -14,7 +14,7 @@ def crawl_website(url, depth=0):
             return
         visited.add(url)
 
-    print(f"Crawling: {url} at depth {depth}")  # Debugging statement
+    print(f"{'  ' * depth}|- Crawling: {url} at depth {depth}")  # Tree-like output
 
     content = fetch_page(url)
     if content is None:
@@ -25,6 +25,5 @@ def crawl_website(url, depth=0):
     output = " " * depth * 2 + "|- " + url
     output_queue.append((depth, Fore.GREEN + output))
 
-    links = parse_links(url, content, visited)  # Pass visited as an argument
-    print(f"Found {len(links)} links on {url}")  # Debugging statement
+    links = parse_links(url, content, visited)
     return links, depth + 1
