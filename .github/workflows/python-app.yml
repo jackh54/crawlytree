@@ -30,9 +30,9 @@ jobs:
 
     - name: Run tests
       run: |
-        python web_crawler/main.py
+        python main.py
 
     - name: Run Linter
       run: |
         pip install flake8
-        flake8 web_crawler/
+        flake8 .
