@@ -29,6 +29,8 @@ def summarize_crawl(domain, visited, failed):
     print(summary)
     output_content.append(summary + "\n")
 
+import os
+
 def main():
     global output_content
     visited = set()
@@ -36,7 +38,12 @@ def main():
     
     print(Fore.GREEN + "Starting the web crawler...")
 
-    url = input(Fore.YELLOW + "Enter the website URL to crawl: ")
+    # Use a predefined URL if running in CI
+    if os.getenv("CI"):
+        url = "https://example.com"  # Replace with any valid default URL
+    else:
+        url = input(Fore.YELLOW + "Enter the website URL to crawl: ")
+
     if not url.startswith('http'):
         url = 'http://' + url
     
