@@ -13,7 +13,7 @@ def fetch_page(url):
         failed.append(url)
         return None
 
-def parse_links(url, content):
+def parse_links(url, content, visited):  # Add 'visited' as an argument
     soup = BeautifulSoup(content, 'html.parser')
     links = []
     for link in soup.find_all('a', href=True):

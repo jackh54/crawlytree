@@ -25,6 +25,6 @@ def crawl_website(url, depth=0):
     output = " " * depth * 2 + "|- " + url
     output_queue.append((depth, Fore.GREEN + output))
 
-    links = parse_links(url, content)
+    links = parse_links(url, content, visited)  # Pass visited as an argument
     print(f"Found {len(links)} links on {url}")  # Debugging statement
     return links, depth + 1
