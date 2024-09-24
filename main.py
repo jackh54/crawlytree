@@ -38,9 +38,8 @@ def main():
     
     print(Fore.GREEN + "Starting the web crawler...")
 
-    # Use a predefined URL if running in CI
     if os.getenv("CI"):
-        url = "https://example.com"  # Replace with any valid default URL
+        url = "https://www.w3schools.com/" 
     else:
         url = input(Fore.YELLOW + "Enter the website URL to crawl: ")
 
